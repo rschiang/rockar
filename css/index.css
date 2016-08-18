@@ -10,9 +10,21 @@ body {
     background: #111;
 }
 
-canvas {
+video, canvas, #notice {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
     width: 100%;
     height: 100%;
+}
+
+video {
+    z-index: 1;
+    object-fit: cover;
+    object-position: center;
+}
+
+canvas {
+    z-index: 10;
 }
 
 nav {
@@ -48,4 +60,12 @@ button .material-icons {
 
 button:hover, button.active {
     opacity: 1;
+}
+
+#notice {
+    background: rgba(0, 0, 0, .1);
+    color: white;
+    z-index: 1000;
+    text-align: center;
+    line-height: 90vh;
 }

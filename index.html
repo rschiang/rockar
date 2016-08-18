@@ -8,6 +8,10 @@
     <title>NTU Go</title>
 </head>
 <body>
+    <video id="camera"></video>
+    <div id="notice">
+        請允許網頁存取相機。
+    </div>
     <nav id="controls">
         <button id="orientation-button">
             <i class="material-icons" id="orientation-button-text">screen_rotation</i>
@@ -16,6 +20,22 @@
             <i class="material-icons" id="fullscreen-button-text">fullscreen</i>
         </button>
     </nav>
+    <script>
+    navigator.getUserMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia );
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia({ audio: false, video: true }, function(stream) {
+            document.getElementById('notice').style.display = 'none';
+            var url = URL.createObjectURL(stream);
+            var camera = document.getElementById('camera');
+            camera.src = url;
+            camera.play();
+            },
+            function(error) {
+                console.log(error);
+            }
+    );
+    }
+    </script>
     <script src="bin/app.bundle.js"></script>
 </body>
 </html>
